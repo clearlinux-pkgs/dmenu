@@ -4,42 +4,67 @@
 #
 Name     : dmenu
 Version  : 4.8
-Release  : 2
+Release  : 3
 URL      : https://git.suckless.org/dmenu/snapshot/dmenu-4.8.tar.bz2
 Source0  : https://git.suckless.org/dmenu/snapshot/dmenu-4.8.tar.bz2
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : MIT
+Requires: dmenu-bin
+Requires: dmenu-doc
 BuildRequires : libXinerama-dev
 BuildRequires : pkgconfig(x11)
 BuildRequires : pkgconfig(xft)
+Patch1: 0001-fix-prefix.diff
 
 %description
 dmenu - dynamic menu
 ====================
 dmenu is an efficient dynamic menu for X.
 
+%package bin
+Summary: bin components for the dmenu package.
+Group: Binaries
+
+%description bin
+bin components for the dmenu package.
+
+
+%package doc
+Summary: doc components for the dmenu package.
+Group: Documentation
+
+%description doc
+doc components for the dmenu package.
+
+
 %prep
 %setup -q -n dmenu-4.8
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1525283986
-make  %{?_smp_mflags} PREFIX=/usr
+export SOURCE_DATE_EPOCH=1525284236
+make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1525283986
+export SOURCE_DATE_EPOCH=1525284236
 rm -rf %{buildroot}
 %make_install
 
 %files
 %defattr(-,root,root,-)
-/usr/local/bin/dmenu
-/usr/local/bin/dmenu_path
-/usr/local/bin/dmenu_run
-/usr/local/bin/stest
-/usr/local/share/man/man1/dmenu.1
-/usr/local/share/man/man1/stest.1
+
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/dmenu
+/usr/bin/dmenu_path
+/usr/bin/dmenu_run
+/usr/bin/stest
+
+%files doc
+%defattr(-,root,root,-)
+%doc /usr/share/man/man1/*
