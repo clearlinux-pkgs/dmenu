@@ -4,7 +4,7 @@
 #
 Name     : dmenu
 Version  : 4.8
-Release  : 5
+Release  : 6
 URL      : https://git.suckless.org/dmenu/snapshot/dmenu-4.8.tar.bz2
 Source0  : https://git.suckless.org/dmenu/snapshot/dmenu-4.8.tar.bz2
 Summary  : No detailed summary available
