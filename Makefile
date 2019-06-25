@@ -1,5 +1,5 @@
 PKG_NAME := dmenu
-URL = https://git.suckless.org/dmenu/snapshot/dmenu-4.8.tar.bz2
+URL = https://dl.suckless.org/tools/dmenu-4.9.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
