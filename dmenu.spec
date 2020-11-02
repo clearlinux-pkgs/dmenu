@@ -4,7 +4,7 @@
 #
 Name     : dmenu
 Version  : 4.9
-Release  : 8
+Release  : 9
 URL      : https://dl.suckless.org/tools/dmenu-4.9.tar.gz
 Source0  : https://dl.suckless.org/tools/dmenu-4.9.tar.gz
 Summary  : No detailed summary available
@@ -50,30 +50,31 @@ man components for the dmenu package.
 
 %prep
 %setup -q -n dmenu-4.9
+cd %{_builddir}/dmenu-4.9
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1561436639
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604357174
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1561436639
+export SOURCE_DATE_EPOCH=1604357174
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dmenu
-cp LICENSE %{buildroot}/usr/share/package-licenses/dmenu/LICENSE
+cp %{_builddir}/dmenu-4.9/LICENSE %{buildroot}/usr/share/package-licenses/dmenu/719999e02dc895467affff283964327ea63caa7f
 %make_install
 
 %files
@@ -88,7 +89,7 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/dmenu/LICENSE
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/dmenu/LICENSE
+/usr/share/package-licenses/dmenu/719999e02dc895467affff283964327ea63caa7f
 
 %files man
 %defattr(0644,root,root,0755)
